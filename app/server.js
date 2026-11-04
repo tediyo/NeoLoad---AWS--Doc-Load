@@ -15,7 +15,7 @@ const s3 = new S3Client({ region: process.env.AWS_REGION || "eu-north-1" });
 const upload = multer({ storage: multer.memoryStorage(), limits: { fileSize: 1024 * 1024 } });
 
 // ---------- database ----------
-const db = new Database("app.db");
+const db = new Database(process.env.DB_PATH || "app.db");
 db.pragma("journal_mode = WAL");
 db.exec(`
   CREATE TABLE IF NOT EXISTS users (
